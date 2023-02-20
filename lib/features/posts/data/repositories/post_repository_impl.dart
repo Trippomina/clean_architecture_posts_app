@@ -46,7 +46,9 @@ class PostRepositoryImpl implements PostsRepository {
     //convert post entity (domain layer) to post model (data layer)
     final PostModel postModel =
         PostModel(id: post.id, title: post.title, body: post.body);
-    return await _getMessage(() => remoteDataSource.addPost(postModel));
+    return await _getMessage(() {
+      return remoteDataSource.addPost(postModel);
+    });
   }
 
   @override
