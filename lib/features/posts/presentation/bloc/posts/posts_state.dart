@@ -21,7 +21,7 @@ class LoadedPostsState extends PostsState {
   LoadedPostsState({required this.posts});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [posts];
 }
 
 class ErrorPostsState extends PostsState {
@@ -30,5 +30,5 @@ class ErrorPostsState extends PostsState {
   ErrorPostsState({required this.message});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [message];
 }
