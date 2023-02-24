@@ -2,6 +2,7 @@ import 'package:clean_architecture_posts_app/core/network/network_info.dart';
 import 'package:clean_architecture_posts_app/features/posts/data/datasources/post_local_data_source.dart';
 import 'package:clean_architecture_posts_app/features/posts/data/datasources/post_remote_data_source.dart';
 import 'package:clean_architecture_posts_app/features/posts/data/repositories/post_repository_impl.dart';
+import 'package:clean_architecture_posts_app/features/posts/domain/repositories/posts_repositories.dart';
 import 'package:clean_architecture_posts_app/features/posts/domain/usecases/add_post.dart';
 import 'package:clean_architecture_posts_app/features/posts/domain/usecases/delete_post.dart';
 import 'package:clean_architecture_posts_app/features/posts/domain/usecases/get_all_posts.dart';
@@ -31,15 +32,16 @@ Future<void> init() async {
 
 //Repository
   //same as use cases
-  sl.registerLazySingleton(() => PostRepositoryImpl(
+  sl.registerLazySingleton<PostsRepository>(() => PostRepositoryImpl(
       remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
 //DataSource
-  sl.registerLazySingleton(() => PostRemoteDataSourceImpl(client: sl()));
-  sl.registerLazySingleton(
+  sl.registerLazySingleton<PostRemoteDataSource>(
+      () => PostRemoteDataSourceImpl(client: sl()));
+  sl.registerLazySingleton<PostLocalDataSource>(
       () => PostLocalDataSourceImpl(sharedPreferences: sl()));
 
   ///Core
-  sl.registerLazySingleton(() => NetworkInfoImpl(sl()));
+  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
   sl.registerLazySingleton(() => InternetConnectionChecker());
 
   ///External

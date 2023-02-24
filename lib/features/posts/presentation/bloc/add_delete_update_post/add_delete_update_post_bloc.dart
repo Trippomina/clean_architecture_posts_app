@@ -27,15 +27,15 @@ class AddDeleteUpdatePostBloc
       if (event is AddPostEvent) {
         emit(LoadingAddDeleteUpdatePostState());
         final failureOrUnit = await addPostUseCase(event.post);
-        _eitherAddUpdateDelete(failureOrUnit, ADD_SUCCESS_MESSAGE);
+        emit(_eitherAddUpdateDelete(failureOrUnit, ADD_SUCCESS_MESSAGE));
       } else if (event is UpdatePostEvent) {
         emit(LoadingAddDeleteUpdatePostState());
         final failureOrUnit = await updatePostUseCase(event.post);
-        _eitherAddUpdateDelete(failureOrUnit, UPDATE_SUCCESS_MESSAGE);
+        emit(_eitherAddUpdateDelete(failureOrUnit, UPDATE_SUCCESS_MESSAGE));
       } else if (event is DeletePostEvent) {
         emit(LoadingAddDeleteUpdatePostState());
         final failureOrUnit = await deletePostUseCase(event.postId);
-        _eitherAddUpdateDelete(failureOrUnit, DELETE_SUCCESS_MESSAGE);
+        emit(_eitherAddUpdateDelete(failureOrUnit, DELETE_SUCCESS_MESSAGE));
       }
     });
   }
