@@ -1,7 +1,7 @@
 import 'package:clean_architecture_posts_app/features/posts/presentation/bloc/posts/posts_bloc.dart';
 import 'package:clean_architecture_posts_app/features/posts/presentation/pages/post_add_update_page.dart';
-import 'package:clean_architecture_posts_app/features/posts/presentation/widgets/post_list_widget.dart';
-import 'package:clean_architecture_posts_app/features/posts/presentation/widgets/message_display_widget.dart';
+import 'package:clean_architecture_posts_app/features/posts/presentation/widgets/posts_page_widgets/post_list_widget.dart';
+import 'package:clean_architecture_posts_app/features/posts/presentation/widgets/posts_page_widgets/message_display_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:clean_architecture_posts_app/core/widgets/loading_widget.dart';
