@@ -1,4 +1,5 @@
 import 'package:clean_architecture_posts_app/features/posts/presentation/bloc/posts/posts_bloc.dart';
+import 'package:clean_architecture_posts_app/features/posts/presentation/pages/post_add_update_page.dart';
 import 'package:clean_architecture_posts_app/features/posts/presentation/widgets/post_list_widget.dart';
 import 'package:clean_architecture_posts_app/features/posts/presentation/widgets/message_display_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class PostsPage extends StatelessWidget {
     return Scaffold(
       appBar: _buildAppBar(),
       body: _buildBody(),
-      floatingActionButton: _buildFloatingbtn(),
+      floatingActionButton: _buildFloatingbtn(context),
     );
   }
 
@@ -41,9 +42,14 @@ class PostsPage extends StatelessWidget {
         ));
   }
 
-  FloatingActionButton _buildFloatingbtn() {
+  FloatingActionButton _buildFloatingbtn(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (_) => PostAddUpdatePage(isUpdate: false)));
+      },
       child: Icon(Icons.add),
     );
   }
