@@ -1,5 +1,9 @@
 import 'package:clean_architecture_posts_app/features/posts/domain/entities/post.dart';
+import 'package:clean_architecture_posts_app/features/posts/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
+import 'package:clean_architecture_posts_app/features/posts/presentation/widgets/add_update_post_page_widgets/form_submit_btn.dart';
+import 'package:clean_architecture_posts_app/features/posts/presentation/widgets/add_update_post_page_widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FormWidget extends StatefulWidget {
   final bool isUpdate;
@@ -33,10 +37,31 @@ class _FormWidgetState extends State<FormWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextField(),
-            TextField(),
-            TextButton(onPressed: () {}, child: Text("hi"))
+            TextFormFieldWidget(
+                name: "Title", multiline: false, controller: _titleController),
+            TextFormFieldWidget(
+                name: "Body", multiline: true, controller: _bodyController),
+            FormSubmitBtn(
+                isUpdate: widget.isUpdate,
+                onPressed: validateFormThenUpdateOrAddPost)
           ]),
     );
+  }
+
+  void validateFormThenUpdateOrAddPost() {
+    final isValid = _formKey.currentState!.validate();
+    if (isValid) {
+      final post = Post(
+          id: widget.isUpdate ? widget.post!.id : null,
+          title: _titleController.text,
+          body: _bodyController.text);
+      if (widget.isUpdate) {
+        BlocProvider.of<AddDeleteUpdatePostBloc>(context)
+            .add(UpdatePostEvent(post: post));
+      } else {
+        BlocProvider.of<AddDeleteUpdatePostBloc>(context)
+            .add(AddPostEvent(post: post));
+      }
+    }
   }
 }

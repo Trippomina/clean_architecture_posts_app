@@ -16,7 +16,7 @@ class PostAddUpdatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: _buildBody(context),
+      body: _buildBody(),
     );
   }
 
@@ -24,7 +24,7 @@ class PostAddUpdatePage extends StatelessWidget {
     return AppBar(title: Text(isUpdate ? "Edit Post" : "Add Post"));
   }
 
-  Widget _buildBody(BuildContext context) {
+  Widget _buildBody() {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -36,7 +36,7 @@ class PostAddUpdatePage extends StatelessWidget {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (_) => PostsPage()),
                   (route) => false);
-            } else if (state is MessageDeleteUpdatePostState) {
+            } else if (state is ErrorAddDeleteUpdatePostState) {
               SnackBarMessage()
                   .showErrorSnackBar(message: state.message, context: context);
             }
