@@ -1,9 +1,9 @@
-import 'package:clean_architecture_posts_app/core/widgets/loading_widget.dart';
-import 'package:clean_architecture_posts_app/features/posts/domain/entities/post.dart';
-import 'package:clean_architecture_posts_app/features/posts/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
-import 'package:clean_architecture_posts_app/features/posts/presentation/pages/posts_page.dart';
-import 'package:clean_architecture_posts_app/core/utils/snack_bar_message.dart';
-import 'package:clean_architecture_posts_app/features/posts/presentation/widgets/add_update_post_page_widgets/form_widget.dart';
+import '../../../../core/widgets/loading_widget.dart';
+import '../../domain/entities/post.dart';
+import '../bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
+import 'posts_page.dart';
+import '../../../../core/utils/snack_bar_message.dart';
+import '../widgets/add_update_post_page_widgets/form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

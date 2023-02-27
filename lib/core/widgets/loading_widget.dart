@@ -1,5 +1,6 @@
-import 'package:clean_architecture_posts_app/core/app_theme.dart';
 import 'package:flutter/material.dart';
+
+import '../app_theme.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({super.key});

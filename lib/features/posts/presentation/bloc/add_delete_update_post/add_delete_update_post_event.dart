@@ -29,7 +29,6 @@ class DeletePostEvent extends AddDeleteUpdatePostEvent {
   final int postId;
 
   DeletePostEvent({required this.postId});
-
   @override
   List<Object> get props => [postId];
 }
